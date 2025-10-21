@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin | Mangal Mart</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <img src="images/logo.png" class="logo" />
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart</a>
+        <a href="admin.html" class="active">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="admin-section">
+    <h2>Admin Panel</h2>
+    <form id="add-product-form">
+      <input type="text" id="product-name" placeholder="Product Name" required />
+      <input type="number" id="product-price" placeholder="Price" required />
+      <input type="text" id="product-img" placeholder="Image URL" required />
+      <button type="submit" class="btn">Add Product</button>
+    </form>
+
+    <div class="product-grid" id="admin-product-list"></div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2025 Mangal Mart · All Rights Reserved</p>
+  </footer>
+
+  <script src="admin.js"></script>
+</body>
+</html>

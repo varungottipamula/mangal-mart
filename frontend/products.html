@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products | Mangal Mart</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <img src="images/logo.png" class="logo">
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+      <nav class="nav" id="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="products.html" class="active">Products</a>
+        <a href="cart.html">Cart</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="products-section">
+    <h2>All Products</h2>
+    <div class="product-grid" id="product-list"></div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2025 Mangal Mart · All Rights Reserved</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  let products = JSON.parse(localStorage.getItem("products")) || [];
+
+  const container = document.getElementById("product-container");
+  if (products.length === 0) {
+    container.innerHTML = `<p>No products added yet. Go to the Admin Panel to add some!</p>`;
+    return;
+  }
+
+  container.innerHTML = products.map(p => `
+    <div class="product-card">
+      <img src="${p.img}" alt="${p.name}" onerror="this.src='images/placeholder.png'">
+      <h3>${p.name}</h3>
+      <p>₹${p.price}</p>
+      <button class="btn add-to-cart" data-name="${p.name}" data-price="${p.price}">Add to Cart</button>
+    </div>
+  `).join("");
+});
+</script>
+</body>
+</html>

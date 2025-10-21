@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout | Mangal Mart</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+
+<section class="checkout">
+  <h2>Checkout</h2>
+  <div id="checkout-summary"></div>
+  <button class="btn" id="rzp-button">Pay with Razorpay</button>
+</section>
+
+<footer class="footer">
+  <p>© 2025 Mangal Mart · All Rights Reserved</p>
+</footer>
+
+<script>
+// -------------------------------
+// Update checkout summary dynamically
+// -------------------------------
+function updateSummary() {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  if (!Array.isArray(cart)) cart = [];
+
+  const total = cart.reduce((sum, item) => sum + Number(item.price || 0), 0);
+
+  const summary = document.getElementById("checkout-summary");
+  if (cart.length === 0) {
+    summary.innerHTML = `<p>Your cart is empty!</p>`;
+  } else {
+    summary.innerHTML = `<p>Total Amount: <strong>₹${total}</strong></p>`;
+  }
+
+  return total;
+}
+
+// Call it initially
+updateSummary();
+
+// -------------------------------
+// Razorpay Payment Button
+// -------------------------------
+document.getElementById("rzp-button").onclick = e => {
+  e.preventDefault();
+
+  // Always re-read cart and total to avoid stale data
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  if (!Array.isArray(cart)) cart = [];
+
+  const total = cart.reduce((sum, item) => sum + Number(item.price || 0), 0);
+
+  if (cart.length === 0 || total === 0) {
+    alert("Your cart is empty!");
+    return;
+  }
+
+  const options = {
+    key: "YOUR_RAZORPAY_KEY", // Replace with your Razorpay key
+    amount: total * 100, // Convert to paise
+    currency: "INR",
+    name: "Mangal Mart",
+    description: "Purchase from Mangal Mart",
+    image: "images/logo.png",
+    handler: function (response) {
+      alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
+      // Clear cart after successful payment
+      localStorage.removeItem("cart");
+      localStorage.setItem("cartTotal", "0");
+      window.location = "payment-success.html";
+    },
+    theme: {
+      color: "#fc4a1a" // Orange theme for Mangal Mart
+    }
+  };
+
+  const rzp = new Razorpay(options);
+  rzp.open();
+};
+</script>
+
+</body>
+</html>

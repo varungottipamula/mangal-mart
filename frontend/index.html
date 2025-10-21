@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mangal Mart</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <img src="images/logo.png" alt="Mangal Mart Logo" class="logo">
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+      <nav class="nav" id="nav-menu">
+        <a href="index.html" class="active">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>Welcome to <span>Mangal Mart</span></h1>
+      <p>Your one-stop shop for all spiritual & pooja essentials.</p>
+      <a href="products.html" class="btn">Shop Now</a>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="featured">
+    <h2>Featured Products</h2>
+    <div class="product-grid" id="featured-products"></div>
+  </section>
+
+  <!-- Info Section -->
+  <section class="info">
+    <div class="container">
+      <h2>Why Choose Mangal Mart?</h2>
+      <p>We offer high-quality pooja items and spiritual essentials that bring peace, positivity, and prosperity into your home. All our products are carefully curated for authenticity and purity.</p>
+      <div class="info-cards">
+        <div class="card">
+          <h3>Quality Products</h3>
+          <p>Premium quality pooja items sourced ethically and delivered with care.</p>
+        </div>
+        <div class="card">
+          <h3>Fast Delivery</h3>
+          <p>Get your items quickly with safe and reliable shipping options.</p>
+        </div>
+        <div class="card">
+          <h3>Easy Returns</h3>
+          <p>Hassle-free returns to ensure your satisfaction with every purchase.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 Mangal Mart · All Rights Reserved</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  let products = JSON.parse(localStorage.getItem("products")) || [];
+
+  // Show only first 4 as "Featured"
+  const featured = products.slice(0, 4);
+
+  const container = document.getElementById("featured-products");
+  if (featured.length === 0) {
+    container.innerHTML = `<p>No featured products yet. Add some from Admin Panel.</p>`;
+    return;
+  }
+
+  container.innerHTML = featured.map(p => `
+    <div class="product-card">
+      <img src="${p.img}" alt="${p.name}" onerror="this.src='images/placeholder.png'">
+      <h3>${p.name}</h3>
+      <p>₹${p.price}</p>
+      <button class="btn add-to-cart" data-name="${p.name}" data-price="${p.price}">Add to Cart</button>
+    </div>
+  `).join("");
+});
+</script>
+
+</body>
+</html>
