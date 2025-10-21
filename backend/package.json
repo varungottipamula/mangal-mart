@@ -5,8 +5,8 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "node app.js",
-    "seed": "node seed.js"
+    "start": "node backend/app.js",
+    "seed": "node backend/seed.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
