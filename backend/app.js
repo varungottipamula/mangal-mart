@@ -13,16 +13,18 @@ connectDB();
 // Middleware
 app.use(express.json());
 
-// Serve frontend from project root
+// Serve frontend from repo root (one level above backend folder)
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-app.use(express.static(path.join(__dirname, '../')));
+const frontendPath = path.join(__dirname, '..'); // points to repo root
 
-// Fallback for HTML routes
+app.use(express.static(frontendPath));
+
+// Fallback for HTML pages
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../index.html'));
+  res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
 // Start server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || process.env.PORT; // Render sets PORT automatically
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
