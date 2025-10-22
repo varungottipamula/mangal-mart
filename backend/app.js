@@ -6,7 +6,6 @@ import connectDB from './database.js';
 
 // Load environment variables
 dotenv.config();
-
 const app = express();
 
 // Connect to MongoDB
@@ -15,18 +14,22 @@ connectDB();
 // Middleware
 app.use(express.json());
 
-// Get current file directory
+// Get directory paths
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Path to frontend (all HTML/CSS/JS in repo root)
+// Path to frontend (repo root, one level above backend folder)
 const frontendPath = path.join(__dirname, '..');
 
-// Serve static frontend files
+// Serve static frontend files (CSS, JS, images)
 app.use(express.static(frontendPath));
 
+// Serve index.html on root URL
+app.get('/', (req, res) => {
+  res.sendFile(path.join(frontendPath, 'index.html'));
+});
+
 // === Backend API routes ===
-// Example routes, adjust as needed
 import productRoutes from './routes/product.js';
 import adminRoutes from './routes/admin.js';
 import paymentRoutes from './routes/payment.js';
@@ -35,11 +38,13 @@ app.use('/api/products', productRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/payment', paymentRoutes);
 
-// === Optional fallback for SPA (if needed) ===
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(frontendPath, 'index.html'));
-// });
+// Fallback for all other HTML pages
+app.get('/:page', (req, res) => {
+  const page = req.params.page;
+  const filePath = path.join(frontendPath, `${page}.html`);
+  res.sendFile(filePath);
+});
 
-// Start server
+// Start server on Render's dynamic port
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
