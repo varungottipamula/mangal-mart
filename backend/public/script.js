@@ -165,3 +165,5 @@ const featuredSection = document.getElementById("featured-products");
 if (featuredSection) {
   renderProducts("featured-products", products.slice(0, 4));
 }
+
+localStorage.removeItem("products");
