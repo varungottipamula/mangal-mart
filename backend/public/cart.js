@@ -1,57 +1,54 @@
-// -------------------------------
-// Initialize cart safely
-// -------------------------------
-let cart = JSON.parse(localStorage.getItem("cart"));
-if (!Array.isArray(cart)) cart = [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-const cartContainer = document.getElementById("cart-items");
-const totalPriceEl = document.getElementById("total-price");
+function updateCart() {
+  const container = document.getElementById("cart-items");
+  const totalPriceElement = document.getElementById("total-price");
 
-// -------------------------------
-// Render cart items
-// -------------------------------
-function renderCart() {
-    if (!cartContainer) return;
+  if (cart.length === 0) {
+    container.innerHTML = `
+      <p class="empty-cart">Your cart is empty!</p>
+    `;
+    totalPriceElement.innerText = "0";
+    return;
+  }
 
-    if (cart.length === 0) {
-        cartContainer.innerHTML = "<p>Your cart is empty!</p>";
-        totalPriceEl.textContent = "0";
-        localStorage.setItem("cartTotal", "0");
-        return;
-    }
+  let total = 0;
 
-    cartContainer.innerHTML = cart.map((item, index) => `
-        <div class="cart-item">
-            <div class="cart-info">
-                <img src="${item.img}" alt="${item.name}">
-                <div>
-                    <h4>${item.name}</h4>
-                    <p>₹${item.price}</p>
-                </div>
-            </div>
-            <button class="btn remove-btn" data-index="${index}">Remove</button>
+  container.innerHTML = cart.map((item, index) => {
+    total += item.price * item.quantity;
+    return `
+      <div class="cart-card">
+        <img src="${item.img}" class="cart-thumb">
+
+        <div class="cart-info">
+          <h3>${item.name}</h3>
+          <p>₹${item.price}</p>
+
+          <div class="quantity-box">
+            <button onclick="changeQty(${index}, -1)">−</button>
+            <span>${item.quantity}</span>
+            <button onclick="changeQty(${index}, 1)">+</button>
+          </div>
         </div>
-    `).join("");
 
-    const total = cart.reduce((sum, item) => sum + Number(item.price || 0), 0);
-    totalPriceEl.textContent = total;
+        <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+      </div>
+    `;
+  }).join("");
 
-    // Save current total for checkout
-    localStorage.setItem("cartTotal", total);
+  totalPriceElement.innerText = total;
+  localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-renderCart();
+function changeQty(index, change) {
+  cart[index].quantity += change;
+  if (cart[index].quantity <= 0) cart.splice(index, 1);
+  updateCart();
+}
 
-// -------------------------------
-// Remove item from cart
-// -------------------------------
-document.addEventListener("click", e => {
-    if (e.target.classList.contains("remove-btn")) {
-        const index = parseInt(e.target.dataset.index);
-        if (!isNaN(index)) {
-            cart.splice(index, 1);
-            localStorage.setItem("cart", JSON.stringify(cart));
-            renderCart();
-        }
-    }
-});
+function removeItem(index) {
+  cart.splice(index, 1);
+  updateCart();
+}
+
+updateCart();

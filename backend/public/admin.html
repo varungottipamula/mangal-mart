@@ -21,10 +21,26 @@
 
   <section class="admin-section">
     <h2>Admin Panel</h2>
+
     <form id="add-product-form">
       <input type="text" id="product-name" placeholder="Product Name" required />
       <input type="number" id="product-price" placeholder="Price" required />
-      <input type="text" id="product-img" placeholder="Image URL" required />
+      
+      <select id="product-category" required>
+        <option value="" disabled selected>Select Category</option>
+        <option value="all">All Categories</option>
+        <option value="thali">Pooja Thali</option>
+        <option value="idol">Brass Idols</option>
+        <option value="diya">Diyas & Lamps</option>
+        <option value="incense">Incense & Accessories</option>
+        <option value="rudraksha">Rudraksha & Spiritual Beads</option>
+        <option value="kalash">Kalash & Pooja Pots</option>
+        <option value="essentials">Daily Pooja Essentials</option>
+        <option value="books">Spiritual Books</option>
+      </select>
+
+      <input type="text" id="product-img" placeholder="Paste Product Image URL" required />
+
       <button type="submit" class="btn">Add Product</button>
     </form>
 

@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mangal Mart | Category</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+  body {
+    background-color: #fafafa;
+  }
+
+  .category-section {
+    text-align: center;
+    padding: 50px 20px;
+  }
+
+  .category-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  .category-section p {
+    color: #666;
+    max-width: 700px;
+    margin: 0 auto 30px;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .product-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 15px;
+    transition: 0.3s ease;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+  }
+
+  .product-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    border-radius: 8px;
+    background-color: #fafafa;
+  }
+
+  .product-card h3 {
+    font-size: 1.05rem;
+    margin: 10px 0 5px;
+    color: #333;
+  }
+
+  .product-card p {
+    font-weight: bold;
+    color: #d2691e;
+    margin-bottom: 10px;
+  }
+
+  .btn {
+    padding: 10px;
+    background: #d2691e;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 600;
+  }
+
+  .btn:hover {
+    background: #b85816;
+  }
+
+  @media (max-width: 768px) {
+    .product-card img {
+      height: 180px;
+    }
+  }
+</style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <img src="images/logo.png" class="logo" alt="Mangal Mart Logo">
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+      <nav class="nav" id="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="category-section">
+    <h2 id="category-title">Loading...</h2>
+    <p id="category-desc"></p>
+
+    <div class="product-grid" id="category-products"></div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2025 Mangal Mart · All Rights Reserved</p>
+  </footer>
+
+  <script>
+  // -------------------------------
+  // CATEGORY PAGE SCRIPT
+  // -------------------------------
+
+  const products = [
+    // Thali
+    { name: "Classic Brass Pooja Thali", price: 999, category: "thali", img: "images/pooja-thali1.jpg", desc: "Handcrafted brass thali with elegant detailing." },
+    { name: "Silver Plated Pooja Thali", price: 1499, category: "thali", img: "images/pooja-thali2.jpg", desc: "Shiny silver finish, perfect for festive rituals." },
+    { name: "Copper Pooja Thali", price: 1299, category: "thali", img: "images/pooja-thali3.jpg", desc: "Traditional copper pooja thali for purity and grace." },
+    { name: "Lotus Design Brass Thali", price: 1699, category: "thali", img: "images/pooja-thali4.jpg", desc: "Beautiful lotus-engraved brass thali for devotion." },
+
+    // Diyas
+    { name: "Brass Akhand Diya", price: 599, category: "diya", img: "images/brass-diya1.jpg", desc: "Long-lasting brass diya ideal for temples." },
+    { name: "Peacock Brass Diya", price: 799, category: "diya", img: "images/brass-diya2.jpg", desc: "Peacock design diya to bring auspicious energy." },
+    { name: "Hanging Brass Diya", price: 899, category: "diya", img: "images/brass-diya3.jpg", desc: "Decorative hanging diya for homes and mandirs." },
+
+    // Idols
+    { name: "Lord Ganesha Idol", price: 1299, category: "idol", img: "images/brass-ganesha.jpg", desc: "Blessed Ganesha idol for prosperity." },
+    { name: "Goddess Lakshmi Idol", price: 1099, category: "idol", img: "images/brass-lakshmi.jpg", desc: "Bring wealth with this divine Lakshmi idol." },
+    { name: "Lord Vishnu Idol", price: 1499, category: "idol", img: "images/brass-vishnu.jpg", desc: "Exquisite Vishnu idol for peace and balance." },
+    { name: "Lord Shiva Idol", price: 999, category: "idol", img: "images/brass-shiva.jpg", desc: "Natraj form of Lord Shiva for spiritual energy." },
+
+    // Incense
+    { name: "Sandalwood Incense Sticks", price: 299, category: "incense", img: "images/incense1.jpg", desc: "Refreshing sandalwood aroma for daily pooja." },
+    { name: "Lavender Dhoop Cones", price: 249, category: "incense", img: "images/incense2.jpg", desc: "Relaxing lavender fragrance for meditation." },
+    { name: "Wooden Incense Holder", price: 349, category: "incense", img: "images/incense3.jpg", desc: "Beautiful wooden incense stand." },
+
+    // Rudraksha
+    { name: "5 Mukhi Rudraksha Mala", price: 799, category: "rudraksha", img: "images/rudraksha1.jpg", desc: "108-bead mala for peace and clarity." },
+    { name: "1 Mukhi Rudraksha", price: 2499, category: "rudraksha", img: "images/rudraksha2.jpg", desc: "Rare Eka Mukhi Rudraksha, certified." },
+    { name: "Tulsi Mala", price: 499, category: "rudraksha", img: "images/rudraksha3.jpg", desc: "Sacred tulsi beads for daily chanting." },
+    
+     // Kalash
+    { name: "Pure Copper Kalash (Medium)", price: 699, category: "kalash", img: "images/kalash1.jpg" },
+    { name: "Brass Pooja Kalash with Coconut Lid", price: 899, category: "kalash", img: "images/kalash2.jpg" },
+    { name: "Silver Plated Decorative Kalash", price: 1299, category: "kalash", img: "images/kalash3.jpg" },
+
+    // Daily Pooja Essentials
+    { name: "Pure Cow Ghee (250ml)", price: 299, category: "essentials", img: "images/ghee.jpg", desc: "Premium A2 cow ghee for daily pooja and aarti." },
+    { name: "Cotton Wicks (Pack of 100)", price: 99, category: "essentials", img: "images/wicks.jpg", desc: "High-quality cotton wicks for diya lighting." },
+    { name: "Loose Cotton (100g)", price: 120, category: "essentials", img: "images/loose-cotton.jpg", desc: "Soft cotton for diya and pooja rituals." },
+    { name: "Pure Pooja Oil (500ml)", price: 180, category: "essentials", img: "images/pooja-oil.jpg", desc: "Blend of oil for pooja and lighting diyas." },
+    { name: "Camphor Tablets (100g)", price: 150, category: "essentials", img: "images/camphor.jpg", desc: "Pure camphor tablets for aarti and spiritual cleansing." },
+    { name: "Roli & Chawal Set", price: 79, category: "essentials", img: "images/roli-chawal.jpg", desc: "Roli and chawal for tilak rituals." },
+    { name: "Temple Match Box (Long Sticks)", price: 49, category: "essentials", img: "images/matchbox.jpg", desc: "Long stick matchbox ideal for pooja use." },
+
+
+    // Books
+    { name: "Bhagavad Gita", price: 499, category: "books", img: "images/book1.jpg", desc: "Hardcover edition of Bhagavad Gita." },
+    { name: "Hanuman Chalisa", price: 199, category: "books", img: "images/book2.jpg", desc: "Pocket edition of Hanuman Chalisa." },
+    { name: "Shri Ramcharitmanas", price: 799, category: "books", img: "images/book3.jpg", desc: "Hindi edition of the Ramayana scripture." },
+  ];
+
+  const categoryMap = {
+    thali: { title: "Pooja Thali Collection", desc: "Explore our wide range of handcrafted pooja thalis made from brass, copper, and silver — perfect for every ritual." },
+    diya: { title: "Diyas & Lamps", desc: "Illuminate your home and temple with beautifully crafted diyas and lamps." },
+    idol: { title: "Brass Idols", desc: "Bring home divine blessings with finely detailed brass idols of deities." },
+    incense: { title: "Incense & Fragrance", desc: "Create a soothing spiritual atmosphere with incense and dhoop sticks." },
+    rudraksha: { title: "Rudraksha & Beads", desc: "Sacred rudraksha malas and beads for meditation and healing energy." },
+    kalash: { title: "Kalash & Pooja Pots", desc: "Pure Brass & Copper Kalash for Rituals & Home Temple"},
+    essentials: { title: "Daily Pooja Essentials", desc: "Everyday items required for pooja and aarti — ghee, cotton, wicks, oil, and more."},
+    books: { title: "Spiritual Books", desc: "Discover timeless wisdom from holy scriptures and devotional texts." }
+  };
+
+  // Get category from URL
+  const params = new URLSearchParams(window.location.search);
+  const type = params.get("type");
+
+  const titleEl = document.getElementById("category-title");
+  const descEl = document.getElementById("category-desc");
+  const container = document.getElementById("category-products");
+
+  const selectedCategory = categoryMap[type];
+  if (selectedCategory) {
+    titleEl.textContent = selectedCategory.title;
+    descEl.textContent = selectedCategory.desc;
+
+    const filtered = products.filter(p => p.category === type);
+    if (filtered.length) {
+      container.innerHTML = filtered.map(p => `
+        <div class="product-card">
+          <img src="${p.img}" alt="${p.name}">
+          <h3>${p.name}</h3>
+          <p>₹${p.price}</p>
+          <small style="display:block; color:#555; font-size:0.9rem; margin-bottom:8px;">${p.desc}</small>
+          <button class="btn add-to-cart" data-name="${p.name}" data-price="${p.price}" data-img="${p.img}">
+            Add to Cart
+          </button>
+        </div>
+      `).join('');
+    } else {
+      container.innerHTML = "<p>No products found in this category.</p>";
+    }
+  } else {
+    titleEl.textContent = "Category Not Found";
+    descEl.textContent = "";
+  }
+
+  // Add to Cart
+  document.addEventListener("click", e => {
+    if (e.target.classList.contains("add-to-cart")) {
+      const name = e.target.dataset.name;
+      const price = +e.target.dataset.price;
+      const img = e.target.dataset.img;
+
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const existing = cart.find(p => p.name === name);
+      if (existing) existing.quantity = (existing.quantity || 1) + 1;
+      else cart.push({ name, price, img, quantity: 1 });
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(`${name} added to cart!`);
+    }
+  });
+  </script>
+</body>
+</html>

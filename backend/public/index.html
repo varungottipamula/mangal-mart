@@ -31,29 +31,142 @@
     </div>
   </section>
 
-  <!-- Featured Products -->
+  <!-- =======================
+     Shop by Category Section
+======================= -->
+<section class="categories-section">
+  <h2>Shop by Category</h2>
+  <p>Explore our range of spiritual and pooja essentials, carefully curated for your devotion and home rituals.</p>
+
+  <div class="category-grid">
+
+    <a href="category.html?type=thali" class="category-card">
+      <img src="images/pooja-thali1.jpg" alt="Pooja Thali">
+      <div class="category-info">
+        <h3>Pooja Thali</h3>
+        <p>Brass, Silver, and Copper Thali Sets</p>
+      </div>
+    </a>
+
+    <a href="category.html?type=diya" class="category-card">
+      <img src="images/brass-diya1.jpg" alt="Diyas & Lamps">
+      <div class="category-info">
+        <h3>Diyas & Lamps</h3>
+        <p>Beautiful handcrafted brass diyas</p>
+      </div>
+    </a>
+
+    <a href="category.html?type=idol" class="category-card">
+      <img src="images/brass-ganesha.jpg" alt="Brass Idols">
+      <div class="category-info">
+        <h3>Brass Idols</h3>
+        <p>Divine idols of gods and goddesses</p>
+      </div>
+    </a>
+
+    <a href="category.html?type=incense" class="category-card">
+      <img src="images/incense1.jpg" alt="Incense & Fragrance">
+      <div class="category-info">
+        <h3>Incense & Fragrance</h3>
+        <p>Natural incense, cones, and holders</p>
+      </div>
+    </a>
+
+    <a href="category.html?type=rudraksha" class="category-card">
+      <img src="images/rudraksha1.jpg" alt="Rudraksha & Beads">
+      <div class="category-info">
+        <h3>Rudraksha & Beads</h3>
+        <p>Spiritual malas and sacred beads</p>
+      </div>
+    </a>
+
+    <a href="category.html?type=kalash" class="category-card">
+     <img src="images/kalash1.jpg" alt="Kalash & Pooja Pots">
+     <div class="category-info">
+       <h3>Kalash & Pooja Pots</h3>
+       <p>Kalash for pooja rituals, festivals, and home temples.</p>
+     </div>
+    </a>
+
+
+    <a href="category.html?type=essentials" class="category-card">
+      <img src="images/ghee.jpg" alt="Daily Pooja Essentials">
+      <div class="category-info">
+        <h3>Daily Pooja Essentials</h3>
+        <p>Ghee, Wicks, Camphor, Oil & more</p>
+      </div>
+    </a>
+
+    <a href="category.html?type=books" class="category-card">
+      <img src="images/book1.jpg" alt="Spiritual Books">
+      <div class="category-info">
+        <h3>Spiritual Books</h3>
+        <p>Gita, Ramayana, and more</p>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+  <!-- ===================
+       Featured Products
+  ==================== -->
   <section class="featured">
     <h2>Featured Products</h2>
-    <div class="product-grid" id="featured-products"></div>
+    <p style="text-align:center; max-width:700px; margin:10px auto;">
+      Handpicked pooja essentials to bring divinity, purity and positivity into your home.
+    </p>
+
+    <div class="product-grid">
+
+      <div class="product-card">
+        <img src="images/pooja-thali1.jpg" alt="Brass Thali">
+        <h3>Brass Pooja Thali Set</h3>
+        <p>₹2,100</p>
+        <button class="btn add-to-cart" data-name="Brass Pooja Thali Set" data-price="2100">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="images/brass-ganesha.jpg" alt="Ganesha Idol">
+        <h3>Lord Ganesha Brass Idol</h3>
+        <p>₹1,299</p>
+        <button class="btn add-to-cart" data-name="Ganesha Idol" data-price="1299">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="images/brass-diya1.jpg" alt="Brass Diya">
+        <h3>Brass Akhand Diya</h3>
+        <p>₹599</p>
+        <button class="btn add-to-cart" data-name="Brass Akhand Diya" data-price="599">Add to Cart</button>
+      </div>
+
+      <div class="product-card">
+        <img src="images/rudraksha1.jpg" alt="Rudraksha Mala">
+        <h3>108 Rudraksha Mala</h3>
+        <p>₹799</p>
+        <button class="btn add-to-cart" data-name="Rudraksha Mala" data-price="799">Add to Cart</button>
+      </div>
+
+    </div>
   </section>
 
-  <!-- Info Section -->
+  <!-- Why Choose Us -->
   <section class="info">
     <div class="container">
       <h2>Why Choose Mangal Mart?</h2>
-      <p>We offer high-quality pooja items and spiritual essentials that bring peace, positivity, and prosperity into your home. All our products are carefully curated for authenticity and purity.</p>
+      <p>Premium handpicked pooja items to elevate your spiritual journey.</p>
       <div class="info-cards">
         <div class="card">
-          <h3>Quality Products</h3>
-          <p>Premium quality pooja items sourced ethically and delivered with care.</p>
+          <h3>Premium Quality</h3>
+          <p>Authentic and certified products for pure devotion.</p>
         </div>
         <div class="card">
           <h3>Fast Delivery</h3>
-          <p>Get your items quickly with safe and reliable shipping options.</p>
+          <p>Secure & quick shipping at your doorstep.</p>
         </div>
         <div class="card">
           <h3>Easy Returns</h3>
-          <p>Hassle-free returns to ensure your satisfaction with every purchase.</p>
+          <p>Worry-free return policy for peace of mind.</p>
         </div>
       </div>
     </div>
@@ -65,29 +178,6 @@
   </footer>
 
   <script src="script.js"></script>
-  <script>
-document.addEventListener("DOMContentLoaded", () => {
-  let products = JSON.parse(localStorage.getItem("products")) || [];
-
-  // Show only first 4 as "Featured"
-  const featured = products.slice(0, 4);
-
-  const container = document.getElementById("featured-products");
-  if (featured.length === 0) {
-    container.innerHTML = `<p>No featured products yet. Add some from Admin Panel.</p>`;
-    return;
-  }
-
-  container.innerHTML = featured.map(p => `
-    <div class="product-card">
-      <img src="${p.img}" alt="${p.name}" onerror="this.src='images/placeholder.png'">
-      <h3>${p.name}</h3>
-      <p>₹${p.price}</p>
-      <button class="btn add-to-cart" data-name="${p.name}" data-price="${p.price}">Add to Cart</button>
-    </div>
-  `).join("");
-});
-</script>
 
 </body>
 </html>
