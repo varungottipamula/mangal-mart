@@ -62,16 +62,14 @@ const defaultProducts = [
   { name: "Shri Ramcharitmanas", price: 799, category: "books", img: "images/book3.jpg" },
 ];
 
-let products = [...savedProducts, ...defaultProducts];
+// ✅ Load Default Products ONLY if not loaded before
+if (!localStorage.getItem("defaultsLoaded")) {
+  localStorage.setItem("products", JSON.stringify(defaultProducts));
+  localStorage.setItem("defaultsLoaded", "yes");
+}
 
-// ✅ Remove duplicates (by name)
-products = products.filter(
-  (p, i, arr) => arr.findIndex(item => item.name === p.name) === i
-);
-
-// ✅ Save Final List
-localStorage.setItem("products", JSON.stringify(products));
-
+// ✅ Always get final product list
+let products = JSON.parse(localStorage.getItem("products")) || [];
 
 // -------------------------------
 // ✅ Render Products Helper
