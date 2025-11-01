@@ -144,15 +144,14 @@ document.addEventListener("click", (e) => {
   }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  const burger = document.getElementById("hamburger");
-  const nav = document.getElementById("nav-menu");
 
-  if (burger && nav) {
-    burger.addEventListener("click", () => {
-      burger.classList.toggle("active");
-      nav.classList.toggle("show");
-    });
-  }
+// -------------------------------
+// ✅ Mobile Menu Fix
+// -------------------------------
+const burger = document.getElementById("hamburger");
+const nav = document.getElementById("nav-menu");
+
+burger?.addEventListener("click", () => {
+  nav.classList.toggle("show");
+  burger.classList.toggle("active");
 });
-
