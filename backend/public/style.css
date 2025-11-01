@@ -593,6 +593,26 @@ body{background:#fefcf7;color:#222;line-height:1.6;}
   font-size: 16px;
 }
 
+@media(max-width:768px){
+  .nav{
+    position:absolute;
+    top:70px;
+    left:0;
+    flex-direction:column;
+    width:100%;
+    background:#fff;
+    padding:20px 0;
+    opacity:0;
+    transform: translateY(-20px); /* ✅ hidden initial position */
+    pointer-events:none;
+    transition:0.3s;
+  }
+  .nav.show {
+    opacity:1;
+    transform: translateY(0); /* ✅ visible */
+    pointer-events:auto;
+  }
+}
 
 
 

@@ -144,14 +144,15 @@ document.addEventListener("click", (e) => {
   }
 });
 
-
 document.addEventListener("DOMContentLoaded", () => {
   const burger = document.getElementById("hamburger");
   const nav = document.getElementById("nav-menu");
 
-  burger?.addEventListener("click", (e) => {
-    e.preventDefault(); // ✅ stop page jump on mobile
-    burger.classList.toggle("active");
-    nav.classList.toggle("show");
-  });
+  if (burger && nav) {
+    burger.addEventListener("click", () => {
+      burger.classList.toggle("active");
+      nav.classList.toggle("show");
+    });
+  }
 });
+
