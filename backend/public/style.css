@@ -593,28 +593,53 @@ body{background:#fefcf7;color:#222;line-height:1.6;}
   font-size: 16px;
 }
 
-/* ✅ Mobile Navbar Toggle Fix */
-@media (max-width: 768px) {
-  #nav-menu {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background: #fff; /* You can change color */
-    position: absolute;
-    top: 60px;
-    left: 0;
-    padding: 15px 0;
-    text-align: center;
-    z-index: 1000;
+@media(max-width:768px){
+  .nav{
+    position:absolute;
+    top:70px;
+    right:0;
+    background:#fff;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    padding:20px 0;
+
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(-10px);
+    transition:all .3s ease-in-out;
+    z-index:999;
   }
 
-  #nav-menu.show {
-    display: flex;
+  .nav.show{
+    opacity:1;
+    pointer-events:auto;
+    transform:translateY(0);
   }
 
-  .hamburger {
-    display: block;
-    cursor: pointer;
+  .hamburger{
+    display:flex;
+    flex-direction:column;
+    cursor:pointer;
+    gap:5px;
+  }
+
+  .hamburger span{
+    width:25px;
+    height:3px;
+    background:#000;
+    transition:0.3s;
+  }
+
+  .hamburger.active span:nth-child(1){
+    transform:rotate(45deg) translateY(8px);
+  }
+  .hamburger.active span:nth-child(2){
+    opacity:0;
+  }
+  .hamburger.active span:nth-child(3){
+    transform:rotate(-45deg) translateY(-8px);
   }
 }
 

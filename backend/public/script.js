@@ -71,6 +71,7 @@ if (!localStorage.getItem("defaultsLoaded")) {
 // ✅ Always get final product list
 let products = JSON.parse(localStorage.getItem("products")) || [];
 
+
 // -------------------------------
 // ✅ Render Products Helper
 // -------------------------------
@@ -145,9 +146,6 @@ document.addEventListener("click", (e) => {
 });
 
 
-// -------------------------------
-// ✅ Mobile Menu Fix
-// -------------------------------
 const burger = document.getElementById("hamburger");
 const nav = document.getElementById("nav-menu");
 
