@@ -153,3 +153,11 @@ burger?.addEventListener("click", () => {
   nav.classList.toggle("show");
   burger.classList.toggle("active");
 });
+
+const path = window.location.pathname.split("/").pop();
+
+document.querySelectorAll(".nav-link").forEach(link => {
+  if (link.getAttribute("href") === path) {
+    link.classList.add("active");
+  }
+});

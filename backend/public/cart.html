@@ -4,25 +4,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cart | Mangal Mart</title>
+<!-- ✅ Add Font Awesome CSS here -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
  <header class="header">
   <div class="container">
-    <img src="images/logo.png" alt="Mangal Mart Logo" class="logo">
+    <img src="images/logo.png" class="logo" alt="Mangal Mart Logo">
+
+    <nav class="nav" id="nav-menu">
+      <a href="index.html" class="nav-link" id="nav-home">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <a href="products.html" class="nav-link" id="nav-products">
+        <i class="fas fa-store"></i>
+        <span>Products</span>
+      </a>
+      <a href="cart.html" class="nav-link" id="nav-cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span>Cart</span>
+      </a>
+    </nav>
 
     <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </div>
-
-    <nav class="nav" id="nav-menu">
-      <a href="index.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="cart.html">Cart</a>
-    </nav>
   </div>
 </header>
-
 
   <section class="cart-section">
   <h2 class="cart-heading">Shopping Cart</h2>
