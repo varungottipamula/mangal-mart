@@ -605,8 +605,53 @@ body{background:#fefcf7;color:#222;line-height:1.6;}
   font-size: 18px;
 }
 
-/* Mobile: Hide text, keep icons */
-@media(max-width:768px){
+/* ✅ New Professional Mobile Menu */
+@media (max-width: 768px) {
+  .nav {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 28px 25px;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: 0.35s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    z-index: 2000;
+  }
+
+  .nav.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .nav-link {
+    font-size: 20px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: 0.2s;
+  }
+
+  .nav-link i {
+    font-size: 24px;
+  }
+
+  .nav-link:hover {
+    color: #E85C0D;
+  }
+
+  .nav-link.active {
+    color: #E85C0D;
+    font-weight: 600;
+  }
+
+  /* Hide Text — Show Icons Only */
   .nav-link span {
     display: none;
   }
@@ -617,9 +662,6 @@ body{background:#fefcf7;color:#222;line-height:1.6;}
   color: #d32f2f !important; /* Highlight color */
   font-weight: bold;
 }
-
-
-
 
 
 
