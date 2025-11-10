@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://mangalmart.rapidbasedesign.com/</loc>
+    <changefreq>daily</changefreq>
+  </url>
+
+  <url>
+    <loc>https://mangalmart.rapidbasedesign.com/products.html</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://mangalmart.rapidbasedesign.com/product.html</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://mangalmart.rapidbasedesign.com/cart.html</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://mangalmart.rapidbasedesign.com/admin.html</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <url>
+    <loc>https://mangalmart.rapidbasedesign.com/checkout.html</loc>
+    <changefreq>weekly</changefreq>
+  </url>
+
+</urlset>
